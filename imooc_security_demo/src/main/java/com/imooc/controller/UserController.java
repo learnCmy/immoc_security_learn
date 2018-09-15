@@ -108,9 +108,14 @@ public class UserController {
     }
 
     @GetMapping("{id:\\d+}")
-    public User getInfo(@ApiParam("用户Id")  @PathVariable String id){
+    public List<TbUser> getInfo(@ApiParam("用户Id")  @PathVariable String id){
         System.out.println("进入getInfo服务");
-       throw new UserNotExistException(id);
+        List<TbUser> tbUsers = userService.queryAll();
+
+        return tbUsers;
+
+
+        //throw new UserNotExistException(id);
         // User user=new User();
     // user.setName("adada");
        // return  user;

@@ -1,8 +1,10 @@
 package com.imooc.service;
 
 import com.github.pagehelper.PageHelper;
+import com.imooc.dto.User;
 import com.imooc.mapper.CatMapper;
 import com.imooc.pojo.Cat;
+import com.imooc.pojo.TbUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,7 +13,7 @@ import tk.mybatis.mapper.entity.Example;
 import java.util.List;
 
 @Service
-public class UserService {
+public class UserService extends BaseService<TbUser>{
     @Autowired
     private CatMapper catMapper;
 
@@ -43,5 +45,7 @@ public class UserService {
         catMapper.insert(cat);
         throw new RuntimeException();
     }
+
+
 
 }

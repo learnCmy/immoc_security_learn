@@ -1,10 +1,11 @@
 package com.imooc.pojo;
 
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
-import javax.persistence.*;
 
 @Table(name = "tb_user")
-public class TbUser {
+public class TbUser extends BasePojo {
     @Id
     private Long id;
 
