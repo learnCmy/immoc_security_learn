@@ -3,15 +3,14 @@ package com.imooc.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.imooc.dto.User;
 import com.imooc.dto.UserQueryCondition;
-import com.imooc.exception.UserNotExistException;
 import com.imooc.mapper.CatMapper;
 import com.imooc.pojo.Cat;
 import com.imooc.pojo.TbUser;
 import com.imooc.service.UserService;
-import com.sun.xml.internal.bind.v2.TODO;
+import com.imooc.utils.IBusResult;
+import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.apache.catalina.connector.Request;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,7 +66,7 @@ public class UserController {
 
         System.out.println(ReflectionToStringBuilder.toString(queryCondition,ToStringStyle.MULTI_LINE_STYLE));
         System.out.println("username:"+username);
-       System.out.println(pageable.getPageSize());
+        System.out.println(pageable.getPageSize());
         System.out.println(pageable.getPageNumber());
         System.out.println(pageable.getSort());
         ArrayList<User> users = new ArrayList<>();
@@ -102,8 +101,8 @@ public class UserController {
     @RequestMapping("/saveCat")
     public Integer save(){
         Cat cat=new Cat();
-        cat.setCatAge(777);
-        cat.setCatName("黄城77");
+        cat.setCatAge(132);
+        cat.setCatName("fafaj");
         return  userService.saveCat(cat);
     }
 
@@ -111,6 +110,8 @@ public class UserController {
     public List<TbUser> getInfo(@ApiParam("用户Id")  @PathVariable String id){
         System.out.println("进入getInfo服务");
         List<TbUser> tbUsers = userService.queryAll();
+
+
 
         return tbUsers;
 
@@ -122,7 +123,12 @@ public class UserController {
     }
 
 
+    @GetMapping("/cc")
+    @ApiOperation(value = "测试！！！")
+    public IBusResult<TbUser> getcc(){
+        return IBusResult.ok(new TbUser());
 
+    }
 
 
 }

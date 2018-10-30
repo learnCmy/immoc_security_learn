@@ -1,18 +1,17 @@
 package com.imooc.pojo;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.imooc.mapper.MyGenId;
 import org.hibernate.validator.constraints.NotEmpty;
-import tk.mybatis.mapper.annotation.KeySql;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
 
 public class Cat {
     public interface CatSimpleView{};
     public  interface  CatDetailView extends CatSimpleView {};
 
     @Id
-    @KeySql(genId = MyGenId.class)
+    //@KeySql(genId = MyGenId.class)
     private Integer id;
 
     @Column(name = "cat_age")

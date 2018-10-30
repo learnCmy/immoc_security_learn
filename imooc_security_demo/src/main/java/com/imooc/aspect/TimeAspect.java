@@ -15,16 +15,22 @@ import java.util.Date;
 @Aspect
 @Component
 public class TimeAspect {
+
+    /*
+        proceddingJoinPoint pjp 包含你拦截的方法的信息的对象
+     */
+
+
     @Around("execution(* com.imooc.controller.UserController.*(..))")
     public Object handleControllerMethod(ProceedingJoinPoint pjp) throws Throwable {
+
         System.out.println("time aspect start");
         long start=new Date().getTime();
         Object[] args = pjp.getArgs();
         for (Object arg : args) {
             System.out.println("arg is "+arg);
         }
-
-        Object proceed = pjp.proceed();
+        Object proceed = pjp.proceed();//即调用你所拦截的方法
         System.out.println("time aspect 耗時"+(new Date().getTime()-start));
 
         System.out.println("time aspect end");

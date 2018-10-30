@@ -1,10 +1,14 @@
 package com.imooc.pojo;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
 
 @Table(name = "tb_user")
+@ApiModel
 public class TbUser extends BasePojo {
     @Id
     private Long id;
@@ -12,11 +16,13 @@ public class TbUser extends BasePojo {
     /**
      * 用户名
      */
+    @ApiModelProperty(value ="用户名" )
     private String username;
 
     /**
      * 密码，加密存储
      */
+    @ApiModelProperty(value ="密码，加密存储" )
     private String password;
 
     /**
