@@ -36,11 +36,11 @@ public class UserService extends BaseService<TbUser>{
         //catMapper.insert(cat);
         Integer id = cat.getId();
         System.out.println("主键的值是" + id);
-        try {
+       /* try {
             tbUserService.sedddapper();
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
         //saveCat2();
         return id;
     }

@@ -28,7 +28,7 @@ public class TbUserService {
         tbUser.setPassword("dafa");
         tbUserMapper.insert(tbUser);
 
-        int i=2/0;
+       // int i=2/0;
 
     }
 }

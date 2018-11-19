@@ -103,7 +103,25 @@ public class UserController {
         Cat cat=new Cat();
         cat.setCatAge(132);
         cat.setCatName("fafaj");
-        return  userService.saveCat(cat);
+        return  catMapper.insertSelective(cat);
+    }
+
+    @RequestMapping("/deleteCat")
+    public Integer delete(){
+        Cat cat=new Cat();
+        cat.setId(2);
+        return  catMapper.deleteByPrimaryKey(cat);
+    }
+
+
+
+    @RequestMapping("/updateCat")
+    public Integer updatecat(){
+        Cat cat=new Cat();
+        cat.setId(1);
+        cat.setCatAge(588);
+        cat.setCatName("cmytaa");
+        return   catMapper.updateByPrimaryKeySelective(cat);
     }
 
     @GetMapping("{id:\\d+}")

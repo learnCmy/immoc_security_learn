@@ -1,7 +1,10 @@
 package com.imooc.pojo;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.imooc.aspect.Datalog;
+import com.imooc.mapper.MyGenId;
 import org.hibernate.validator.constraints.NotEmpty;
+import tk.mybatis.mapper.annotation.KeySql;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
@@ -11,14 +14,16 @@ public class Cat {
     public  interface  CatDetailView extends CatSimpleView {};
 
     @Id
-    //@KeySql(genId = MyGenId.class)
+    @KeySql(genId = MyGenId.class)
     private Integer id;
 
     @Column(name = "cat_age")
+    @Datalog(name="猫年龄")
     private Integer catAge;
 
     @Column(name = "cat_name")
     @NotEmpty
+    @Datalog(name="猫的名称")
     private String catName;
 
     /**

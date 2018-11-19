@@ -1,5 +1,6 @@
 package com.imooc.mapper;
 
+import com.imooc.utils.UniqueIdGenerator;
 import tk.mybatis.mapper.genid.GenId;
 
 /**
@@ -11,7 +12,7 @@ public class MyGenId implements GenId<Integer> {
     @Override
     public Integer genId(String table, String column) {
         //IdWorker idWorker = new IdWorker();
-       return  new Integer(524571);
+       return new Integer(UniqueIdGenerator.generateRandomNumStr(6));
 
     }
 }
