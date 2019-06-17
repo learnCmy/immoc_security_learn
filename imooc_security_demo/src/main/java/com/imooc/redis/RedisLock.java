@@ -4,13 +4,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.stereotype.Component;
 
 /**
  * @Auther: cmy
  * @Date: 2018/9/1 20:11
  * @Description:
  */
-//@Component
+@Component
 @Slf4j
 public class RedisLock {
     @Autowired
@@ -34,7 +35,8 @@ public class RedisLock {
         if (!StringUtils.isEmpty(currentValue)&&Long.parseLong(currentValue)<System.currentTimeMillis()){
             //获取上一个锁的时间（第一个线程拿到，oldvalue=A 第二个则拿到oldvalue=B）
             String oldValue=redisTemplate.opsForValue().getAndSet(key,value);
-            if (!StringUtils.isEmpty(oldValue)&&oldValue.equals(currentValue)){
+            if (StringUtils.isEmpty(oldValue) ||
+                    (!StringUtils.isEmpty(oldValue)&&oldValue.equals(currentValue))){
                 return  true;
             }
         }
@@ -51,14 +53,12 @@ public class RedisLock {
         try {
             String currentValue=redisTemplate.opsForValue().get(key);
             if(!StringUtils.isEmpty(currentValue)&&currentValue.equals(value)){
-                redisTemplate.opsForValue().getOperations().delete(key);
+                redisTemplate.opsForValue( ).getOperations().delete(key);
             }
         } catch (Exception e) {
             log.error("【redis分布式锁】 解锁异常，{}",e);
         }
 
     }
-
-
 
 }

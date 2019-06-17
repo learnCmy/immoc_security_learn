@@ -1,38 +1,22 @@
 package com.imooc.pojo;
 
-import java.util.Date;
-import javax.persistence.*;
+import lombok.Data;
 
+import java.math.BigDecimal;
+import java.util.Date;
+@Data
 public class Aa {
     private Date createTime;
 
     private Integer userId;
 
-    /**
-     * @return createTime
-     */
-    public Date getCreateTime() {
-        return createTime;
-    }
+    private BigDecimal amount;
 
-    /**
-     * @param createTime
-     */
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+    private Integer buyWay;
 
-    /**
-     * @return userId
-     */
-    public Integer getUserId() {
-        return userId;
-    }
+    private String  cat_name;
 
-    /**
-     * @param userId
-     */
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
+    private Cat cat;
+
+
 }

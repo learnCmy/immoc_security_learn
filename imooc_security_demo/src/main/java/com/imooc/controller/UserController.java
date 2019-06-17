@@ -8,13 +8,14 @@ import com.imooc.pojo.Cat;
 import com.imooc.pojo.TbUser;
 import com.imooc.service.UserService;
 import com.imooc.utils.IBusResult;
-import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -39,9 +40,32 @@ public class UserController {
     @Autowired
     private ProviderSignInUtils providerSignInUtils;
 
+    @Value("${cmy.test}")
+    private String aa;
 
     @Autowired
     private CatMapper catMapper;
+
+    @GetMapping("/qq")
+    public Object getqq(){
+        try {
+            Thread.sleep(10000);
+            aa="200";
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return aa;
+    }
+
+    @GetMapping("/qq1")
+    public Object getqq1(){
+        System.out.println(aa.replace("1","2"));
+        String bb=aa.replace("0","1");
+        System.out.println(bb);
+        System.out.println(aa);
+        return aa;
+    }
+
     /**
      * 获取当前用户
      * @return
@@ -58,7 +82,7 @@ public class UserController {
     @ApiOperation(value = "用户查询服务")
     public List<User> queryUser(@RequestParam(required = false) String username,
                                 @Valid UserQueryCondition queryCondition,
-                                @PageableDefault(size = 10,page = 20,sort ="username,asc") Pageable pageable,
+                                @PageableDefault(size = 10,page = 20,sort ="username",direction =Sort.Direction.ASC) Pageable pageable,
                                 BindingResult errors) {
         if (errors.hasErrors()){
             errors.getAllErrors().stream().forEach(error-> System.out.println("有输出吗"+error.getDefaultMessage()));

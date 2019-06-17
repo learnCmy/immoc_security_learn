@@ -29,6 +29,10 @@ public class UUIDUtils {
 
 
     public static String generateUuid() {
+
       return UUID.randomUUID().toString().replace("-","");
     }
+
+
+
 }
